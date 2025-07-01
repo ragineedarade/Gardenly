@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <style>
+      
+      .footer {
+        padding: 40px 20px;
+        background-color:  #343a40;
+      }
+
+      .footer h3 {
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .footer-column p,
+      .footer-column ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 14px;
+        color: #aaa;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-column a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .footer-column a:hover {
+        text-decoration: under;
+        color: black;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .social-icons a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border-radius: 50%;
+      }
+
+      .social-icons a img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .copyright {
+        text-align: center;
+        padding: 10px;
+        background-color: #111;
+        margin-top: 30px;
+        font-size: 14px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .footer-column {
+          margin-bottom: 20px;
+        }
+
+        .social-icons {
+          justify-content: center;
+        }
+      }
+      .copyright {
+        text-align: center;
+        padding: 10px;
+        background-color:  #343a40;
+        margin-top: 0px;
+        font-size: 14px;
+      }
+      .copyright p {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Footer -->
+    <section class="footer-box">
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <!-- About Me Section -->
+            <div class="col-md-4 footer-column">
+              <h3>About Gardenly</h3>
+              <p>
+                This website is designed to help students, doctors, and
+                people learn about the healing properties of medicinal plants.
+              </p>
+              <div class="social-icons mt-3">
+                <a href="#"
+                  ><img
+                    src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/twitter-icon.png"
+                    alt="Twitter"
+                /></a>
+                <a href="#"
+                  ><img
+                    src="https://cdn-icons-png.freepik.com/256/20/20837.png?semt=ais_hybrid"
+                    alt="Facebook"
+                /></a>
+                <a href="#"
+                  ><img
+                    src="https://cdn-icons-png.flaticon.com/128/717/717392.png"
+                    alt="Instagram"
+                /></a>
+              </div>
+            </div>
+
+            <!-- Useful Links Section -->
+            <div class="col-md-4 footer-column">
+              <h3>Useful Links</h3>
+              <ul>
+                <li>
+                  <a href="https://ayush.gov.in/#!/">Ministry of AYUSH</a>
+                </li>
+                <li>
+                  <a href="https://mohfw.gov.in/">Health Ministry</a>
+                </li>
+                <li>
+                  <a href="https://www.education.gov.in/"
+                    >Ministry of Education</a
+                  >
+                </li>
+                <li>
+                  <a href="https://dst.gov.in/">Science and Technology</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Contact Information Section -->
+            <div class="col-md-4 footer-column">
+              <h3>Have Questions?</h3>
+              <p>
+                <strong>📍 Address:</strong> Mountain View, San Francisco.
+              </p>
+              <p><strong>📞 Phone:</strong> +91</p>
+              <p>
+                <strong>✉ Email:</strong>
+                <a href="mailto:glamerly@gmail.com">glamerly@gmail.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+      <div class="copyright">
+        <p class="text-center m-0 py-3">
+          Copyright © 2024-2025 | All rights reserved
+        </p>
+      </div>
+    <!-- Bootstrap JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

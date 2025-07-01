@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assd.gif" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <title>Zora Virtual Assistance</title>
+  </head>
+  <style>
+    * {
+      padding: 0%;
+      margin: 0%;
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      background-color: rgb(0, 0, 0);
+    }
+    img {
+      width: 380px;
+    }
+    .btn-box {
+      background-image: url('/static/ai-1.gif');
+      width: 280px;
+      height: 280px;
+      position: relative;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      background-color: rgb(23, 24, 23);
+      padding: 13px;
+      border: 5px solid #0b0b0b;
+      border-radius: 50%;
+      font-size: 80px;
+      color: #16ea6a;
+      cursor: pointer;
+      outline: none;
+      transition: 0.3s ease-in-out;
+      box-shadow: 0 0 15px rgba(36, 189, 54, 0.7), 0 0 30px rgba(0, 140, 247, 0.5),
+        0 0 45px rgba(0, 140, 247, 0.3);
+    }
+    button:hover {
+      box-shadow: 0 0 25px rgb(84, 240, 79), 0 0 50px rgba(0, 140, 247, 0.7),
+        0 0 75px rgba(0, 247, 12, 0.5);
+      transform: scale(1.05);
+    }
+    .animated-header {
+      font-size: 1rem;
+      color: #00ffcc;
+      text-align: left;
+      margin-top: 0px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      letter-spacing: 1px;
+      box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc;
+      animation: glow 1s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc;
+      }
+      50% {
+        box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+      }
+      100% {
+        box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc;
+      }
+    }
+  </style>
+  <body>
+    <header class="animated-header">Zora developed by Bug's Fighters</header>
+    <img src='/static/assd.gif' alt="img-not-found" />
+    <div class="box">
+      <button>
+        <i class="fa-solid fa-microphone-lines-slash"></i>
+      </button>
+    </div>
+
+    <script>
+      let box = document.querySelector(".box");
+      let btn = document.querySelector("button");
+
+      const speakFunc = (input) => {
+        let speakInput = new SpeechSynthesisUtterance(input);
+        speakInput.lang = "en-IN";
+        window.speechSynthesis.speak(speakInput);
+        speakInput.onend = function() {
+          console.log("Speech finished!");
+        };
+      };
+
+      window.onload = () => {
+        speakFunc("Hello, I am Zora, your virtual assistant.");
+        greetingFunc();
+      };
+
+      const greetingFunc = () => {
+        let date = new Date();
+        let hour = date.getHours();
+        if (hour >= 0 && hour < 12) speakFunc("Good morning");
+        else if (hour >= 12 && hour < 16) {
+          speakFunc("Good afternoon");
+        } else {
+          speakFunc("Good evening");
+        }
+      };
+
+      const startVoiceInput = () => {
+        if ("webkitSpeechRecognition" in window) {
+          let recognition = new webkitSpeechRecognition();
+          recognition.lang = "en-US";
+          recognition.onresult = (e) => {
+            let spokenText = e.results[0][0].transcript;
+            handleCommands(spokenText);
+            box.classList.remove("btn-box");
+            btn.innerHTML = `<i class="fa-solid fa-microphone-lines-slash"></i>`;
+          };
+          recognition.start();
+        } else {
+          alert("Your browser does not support voice recognition.");
+        }
+      };
+
+      btn.onclick = () => {
+        box.classList.add("btn-box");
+        btn.innerHTML = `<i class="fa-solid fa-microphone-lines"></i>`;
+        startVoiceInput();
+      };
+
+      const handleCommands = (command) => {
+        console.log(command);
+        if (command.includes("YouTube")) {
+          speakFunc(`Opening YouTube channel for ${command}`);
+          const channelName = command.replace("YouTube", "").trim();
+          window.open(`https://www.youtube.com/results?search_query=${channelName}`);
+        } else if (
+          command.includes("hello") ||
+          command.includes("hey") ||
+          command.includes("hi")
+        ) {
+          speakFunc("Hello,  how can I help you?");
+        } else if (
+          command.includes("Who are you") ||
+          command.includes("Who is your developer?") ||
+          command.includes("Who is your owner?")
+        ) {
+          speakFunc("I am Zora, tu kon virtual assistant, built by Bug's fighters.");
+        } else if (command.includes("Open YouTube") || command.includes("YouTube.")) {
+          speakFunc("Opening YouTube... Please wait.");
+          window.open("https://www.youtube.com/watch?v=Douy2lRDBo4&t=1676s");
+        } else if (command.includes("Open LinkedIn.") || command.includes("LinkedIn.")) {
+          speakFunc("Opening LinkedIn... Please wait.");
+          window.open("https://www.linkedin.com/feed/");
+        } else if (command.includes("Open Calculator.") || command.includes("Calculator.")) {
+          speakFunc("Opening Calculator... Please wait.");
+          window.open("Calculator://");
+        } else if (
+          command.includes("Tell me time.") ||
+          command.includes("Time.") ||
+          command.includes("What is time right now?")
+        ) {
+          let time = new Date().toLocaleTimeString(undefined, { hour: "numeric", minute: "numeric" });
+          speakFunc(time);
+        } else if (
+          command.includes("Tell me date.") ||
+          command.includes("date") ||
+          command.includes("What is date today?")
+        ) {
+          let date = new Date().toLocaleDateString(undefined, { day: "numeric", month: "long" });
+          speakFunc(date);
+        } else if (command.toLowerCase().includes("chatgpt")) {
+          speakFunc("Opening ChatGPT account.");
+          window.open("https://chat.openai.com/");
+        }
+        else if (command.includes("Amla") || command.includes("embalic officinalis")) {
+            speakFunc("Amla, commonly known as Indian Gooseberry, is used in medicinal formulations due to its healing properties. The small, round, yellowish-green berries are known for their various health benefits and are considered a superfood in Ayurveda. Uses include heartburn, anti-aging, cancer prevention, heart health, blood sugar regulation, liver damage, and boosting immune health. Found in Madhya Pradesh, Uttar Pradesh, Rajasthan, Tamil Nadu.");
+          }
+          // Ark Saphed Command
+          else if (command.includes("ark saphed") || command.includes("calotropis gigantea")) {
+            speakFunc("Arka, a perennial shrub, grows to 2.5 meters high with white or lavender waxy flowers. It contains cardiac glycosides, fatty acids, and calcium oxalate. It is used for acne, tooth moving, itching, scorpion bites, ulcers, pimples, snake poison, small white marks, and disorders caused by gas. Found in Rajasthan, Gujarat, Karnataka, Tamil Nadu, Andhra Pradesh, Uttar Pradesh, Maharashtra.");
+          }
+          // Ashoka Command
+          else if (command.includes("ashoka") || command.includes("saraca indica")) {
+            speakFunc("The Ashoka tree, also known as the sacred tree, is revered in Ayurveda for its medicinal properties. It thrives in tropical and humid regions and produces vibrant orange-red flowers. It's used for women's health, digestive health, skin and wound care, anti-inflammatory purposes, as an antidepressant, in cosmetics, and as a natural dye. Found in Karnataka, Kerala, Maharashtra, Madhya Pradesh, Chhattisgarh, Uttar Pradesh, Jharkhand, Tamil Nadu, and Bihar.");
+          } else {
+          speakFunc(`I found the following results for: ${command}`);
+          window.open(`https://www.google.com/search?q=${command}`);
+        }
+      };
+    </script>
+  </body> 
+</html>

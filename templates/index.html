@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gardenly</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="carousel.css" rel="stylesheet">
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #343a40;
+      
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #4CAF50 !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #E0E0E0;
+    }
+
+    .navbar-nav .nav-link.active {
+      background-color: #4CAF50;
+      color: #1E1E1E !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+      background-color:rgb(166, 173, 181);
+
+      color:rgb(33, 18, 160);
+       
+     
+    }
+
+    /* About and Contact Sections */
+    .about-section {
+      background-color: #f1faee;
+      color: #1d3557;
+    }
+
+    .contact-section {
+      background-color: #a8dadc;
+      color: #1d3557;
+    }
+    .carousel-item img {
+  width: 1920px;
+  height: 600px;
+  object-fit: cover; 
+  /* Keeps aspect ratio intact */
+  
+}
+
+    /* Cards */
+    .card {
+      border: none;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body p {
+      color: #495057;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(90deg, #06d6a0, #1d3557);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #1d3557, #06d6a0);
+    }
+
+    /* Footer */
+    
+
+     
+    .featurette-container {
+      width: 100%;
+      padding: 20px;
+      background-color:rgb(166, 213, 183);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-family: 'Roboto', sans-serif; /* Similar font style */
+    }
+    
+    /* Featurette Layout */
+    .featurette {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .featurette .col-md-7,
+    .featurette .col-md-5 {
+      flex: 1;
+      min-width: 300px;
+      padding: 10px;
+    }
+    
+    /* Heading Styles */
+    .featurette-heading {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1d3557;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+    
+    .text-body-secondary {
+      font-size: 1.25rem;
+      color: #6c757d;
+      margin-left: 10px;
+      font-weight: 500;
+    }
+    
+    /* Paragraph Styles */
+    p.lead {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #495057;
+    }
+    
+    /* Image Styles */
+    .featurette img {
+      width: 500px;
+      height: 500px;
+      object-fit: cover; /* Maintain aspect ratio */
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 100%;
+      height: auto;
+    }
+    
+    /* Divider Style */
+    .featurette-divider {
+      margin: 40px 0;
+      height: 1px;
+      background-color: rgba(83, 219, 45, 0.58);
+      border: none;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .featurette {
+        flex-direction: column;
+      }
+    
+      .featurette .col-md-7,
+      .featurette .col-md-5 {
+        text-align: center;
+      }
+    
+      .featurette img {
+        margin-bottom: 20px;
+      }
+    
+      .featurette-heading {
+        font-size: 1.5rem;
+      }
+    
+      p.lead {
+        font-size: 0.95rem;
+      }
+    }
+    
+    
+/* Style for the title */
+.caption-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffcc00; /* Golden color for a vibrant look */
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* Style for the text */
+.caption-text {
+  font-size: 1.25rem;
+  color: #f1f1f1; /* Light text for contrast */
+  margin-bottom: 20px;
+}
+
+/* Style for the button */
+.btn-primary {
+  background-color: #ffcc00; /* Golden button color */
+  border-color: #ffcc00;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #e6b800; /* Slightly darker golden on hover */
+  border-color: #e6b800;
+}
+/* Add margin-top to the featurettes section */
+.featurette-divider {
+  margin-top: 30px; /* Adjust the value as needed */
+  
+}
+
+ 
+      .copyright {
+        text-align: center;
+        padding: 10px;
+        background-color: rgb(30, 30, 30);
+        margin-top: 0px;
+        font-size: 14px;
+      }
+      .copyright p {
+        color: white;
+      }
+      footer h3{ color: white; }
+    </style>
+
+  
+</head>
+
+<body>
+<form method="post">
+    {% csrf_token %}
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <i class="fa-brands fa-pagelines"></i> Gardenly
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about-us">About  </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/zora">Virtual Assistant </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact-us">Contact</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <label for="query">Enter your search term:</label>
+          <input type="text" id="query" name="query" required>
+          <button type="submit">Search</button>
+        </form>
+        
+      </div>
+    </div>
+  </nav>
+</form>  
+<main> 
+
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+        aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="static/1st.webp" class="d-block w-100" alt="Slide 1">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1 style= "color:dark black;"> Reconnect with Nature's Cure</h1>
+            <p>Delve into time-tested practices that restore your body and mind through Ayurveda.</p>            
+            <p><a class="btn btn-lg btn-primary" href="/contact-us">Feedback</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="static/2nd.webp" class="d-block w-100" alt="Slide 2">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Discover the Art of Ayurveda</h1>
+            <p>Experience the harmony of natural healing with our traditional remedies and personalized care.</p>            
+            <p><a class="btn btn-lg btn-primary" href="/about-us">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="static/slide3.webp" class="d-block w-100" alt="Slide 3">
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Embrace Wellness Naturally</h1>
+            <p>Unlock the secrets of ancient herbal therapies for a healthier, balanced life.</p>            
+            <p><a class="btn btn-lg btn-primary" href="/about-us">About</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+<hr>
+  <div class="container marketing">
+<br><br>
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <br>
+      <div class="row">
+        <div class="col-lg-4 text-center">
+            <img src="static/types/vatta.webp" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Vata image">
+            <h2 class="fw-normal"><b>Vata</b></h2>
+            <p>Vata is a dosha associated with movement, creativity, and quick thinking, but when out of balance, it can lead to anxiety, dryness, and restlessness.</p>
+            <p><a class="btn btn-secondary" href="https://mapi.com/blogs/articles/understanding-vata-dosha?srsltid=AfmBOopAKUJDgXj1oyxPDjgC90pk04AAqnoeBO7nbEbMRUU1fYRJsk24">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+    
+        <div class="col-lg-4 text-center">
+            <img src="static/types/pitta.webp" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Pitta image">
+            <h2 class="fw-normal"><b>Pitta</b></h2>
+            <p>Pitta governs transformation, focus, and intensity, yet an imbalance can cause irritability, inflammation, and digestive disturbances.</p>
+            <p><a class="btn btn-secondary" href="https://www.dabur.com/blog/doshas/what-pitta-dosha">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+    
+        <div class="col-lg-4 text-center">
+            <img src="static/types/kapha.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Kapha image">
+            <h2 class="fw-normal"><b>Kapha</b></h2>
+            <p>Kapha represents stability, calm, and strength, though it may lead to sluggishness, weight gain, and congestion when in excess.</p>
+            <p><a class="btn btn-secondary" href="https://www.dabur.com/blog/doshas/what-kapha-dosha">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+    
+    <!-- START THE FEATURETTES -->
+<br><br>
+    <hr class="featurette-divider" style="margin-top: 30px;">
+<br><br>
+<div class="featurette-container">
+  <div class="container">
+    {% if result %}
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">
+          {{ result.Common_Name }}
+          <span class="text-body-secondary">{{ result.Botanical_Name }}</span>
+        </h2>
+        <p class="lead">
+          <b>{{ result.Description }}</b><br>
+          <b>Uses:</b> {{ result.Uses }}<br>
+          <b>Location:</b> {{ result.Locations }}
+        </p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="{{ result.Img }}" alt="{{ result.Common_Name }} image">
+      </div>
+    </div>
+    {% elif error %}
+    <p>{{ error }}</p>
+    {% endif %}
+  </div>
+</div>
+<br>
+<hr class="featurette-divider">
+<br>
+<div class="featurette-container" style="width: 100%; box-sizing: border-box; padding: 20px; background-color:rgb(166, 213, 183);">
+  <div class="row featurette" style="display: flex; align-items: center; flex-wrap: wrap;">
+    <div class="col-md-7" style="flex: 1; min-width: 300px; padding: 10px;">
+      <h2 class="featurette-heading fw-normal lh-1">Amla <span class="text-body-secondary">Embalic officinalis</span></h2>
+      <p class="lead" style="line-height: 1.6;">
+        <b>Amla</b> is generally known as an Indian Gooseberry. The berries of the trees are potently used for medicinal
+        formulations due to their healing properties. Amla tree contains small berries that are round and yellowish-green in colour.
+        Due to its several health benefits, it should be referred to as a superfood. In ancient Ayurveda, the Amla is known by a
+        different name such as sour, nurse, immortality, and mother.<br>
+        <b>Uses:</b> Heartburn, Anti-aging, Cancer, Heart health, Blood sugar levels, Liver damage, Immune health.<br>
+        <b>Locations:</b> Madhya Pradesh, Uttar Pradesh, Rajasthan, Tamil Nadu.
+      </p>
+    </div>
+    <div class="col-md-5" style="flex: 1; min-width: 300px; padding: 10px; display: flex; justify-content: center; align-items: center;">
+      <img src="static/amla.jpg" width="500" height="500" alt="Amla image" style="max-width: 100%; height: auto; border-radius: 10px;">
+    </div>
+  </div>
+</div>
+
+ 
+ 
+
+<br><br>
+    <hr class="featurette-divider">
+<br><br>
+<div class="featurette-container" style="width: 100%; box-sizing: border-box; padding: 20px; background-color:  rgb(166, 213, 183); margin-bottom: 20px;">
+  <div class="row featurette" style="display: flex; align-items: center; flex-wrap: wrap;">
+    <div class="col-md-7 order-md-2" style="flex: 1; min-width: 300px; padding: 10px;">
+      <h2 class="featurette-heading fw-normal lh-1">Ark saphed <span class="text-body-secondary">Calotropis gigantia</span></h2>
+      <p class="lead" style="line-height: 1.6;">
+        <b>Arka (Calotropis gigantea) </b> is a perennial shrub growing 2.5 meter high with various branches and sub branches. 
+        Leaves are simple, opposite, sub sessile, ovate and cordate at base. It has bunch of waxy flowers that are white or lavender in color. 
+        Flowers consists of pointed five petals and a small beautiful crown, which holds the stamen. It has milky stem and contains cardiac glycosides,
+        fatty acid and calcium oxalate. <br>
+        <b>Uses:</b> Acne and pimples, Tooth Moving, Itching, Scorpion bite, Ulcer and pimples, Snake poison, small white marks, Disorders caused by gas.<br>
+        <b>Location:</b> Rajasthan, Gujarat, Karnataka, Tamil Nadu, Andhra Pradesh, Uttar Pradesh, Maharashtra.
+      </p>
+    </div>
+    <div class="col-md-5 order-md-1" style="flex: 1; min-width: 300px; padding: 10px; display: flex; justify-content: center; align-items: center;">
+      <img src="static/akav.jpg" width="500" height="500" alt="Ark saphed image" style="max-width: 100%; height: auto; border-radius: 10px;">
+    </div>
+  </div>
+</div>
+<br><br>
+    <hr class="featurette-divider">
+<br><br>
+<div class="featurette-container" style="width: 100%; box-sizing: border-box; padding: 20px; background-color: rgb(166, 213, 183) ;">
+  <div class="row featurette" style="display: flex; align-items: center; flex-wrap: wrap;">
+    <div class="col-md-7" style="flex: 1; min-width: 300px; padding: 10px;">
+      <h2 class="featurette-heading fw-normal lh-1">Ashoka<span class="text-body-secondary"> Saraca indica</span></h2>
+      <p class="lead" style="line-height: 1.6;">
+        <b>The Ashoka</b> plant (Saraca asoca), also known as the sacred tree, is a revered evergreen tree native to 
+        the Indian subcontinent. It is celebrated for its medicinal properties in Ayurveda and is often associated with religious 
+        and cultural significance in India. The tree produces vibrant orange-red flowers and thrives in humid and tropical regions.
+        Known for its dense foliage, it is commonly planted in gardens and temples for its aesthetic and spiritual appeal. <br>
+        <b>Uses:</b> Women's Health, Digestive Health, Skin and Wound Care, Anti-inflammatory Properties, Anti-depressant, Cosmetics, Natural Dye.<br>
+        <b>Location:</b> Karnataka, Kerala, Maharashtra, Madhya Pradesh, Chhattisgarh, Uttar Pradesh, Jharkhand, Tamil Nadu, Bihar.
+      </p>
+    </div>
+    <div class="col-md-5" style="flex: 1; min-width: 300px; padding: 10px; display: flex; justify-content: center; align-items: center;">
+      <img src='static/ashok.jpg' ,width="500" height="500" alt="Ashoka image" style="max-width: 100%; height: auto; border-radius: 10px;">
+    </div>
+  </div>
+</div>
+
+  </main>
+<br><br><br>
+{% include "chatbot.html" %}
+{% include "footer.html" %}
+ 
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

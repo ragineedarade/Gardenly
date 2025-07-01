@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - My Website</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* Chatbox Container */
+      .chat-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 350px;
+        max-height: 500px;
+        display: none; /* Initially hidden */
+        flex-direction: column;
+        background-color: #fefefe;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        z-index: 999;
+      }
+
+      .chat-header {
+        background-color: #0d6efd;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .chat-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        background-color: #f4f4f9;
+      }
+
+      .chat-footer {
+        display: flex;
+        padding: 10px;
+        background-color: #fff;
+      }
+
+      .chat-footer input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .chat-footer button {
+        margin-left: 10px;
+        padding: 8px 15px;
+        background-color: #0d6efd;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      /* Floating Chat Icon */
+      .chat-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #0d6efd; /* ChatGPT blue */
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      .chat-icon i {
+        font-size: 30px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">MyBrand</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about-us">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main></main>
+    <!-- Chatbot Trigger Icon -->
+    <div class="chat-icon closed" id="chatIcon" onclick="toggleChat()">
+      <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- Chatbox -->
+    <div class="chat-container" id="chatContainer">
+      <div class="chat-header">
+        <span>ChatGPT Assistant</span>
+        <button class="btn btn-sm btn-light" onclick="closeChat()">X</button>
+      </div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-footer">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Type a message..."
+          onkeypress="handleEnter(event)"
+        />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <!-- Chatbot Script -->
+    <script>
+      const chatContainer = document.getElementById("chatContainer");
+      const chatIcon = document.getElementById("chatIcon");
+      const chatBody = document.getElementById("chatBody");
+
+      // Toggle Chatbox Visibility
+      function toggleChat() {
+        chatContainer.style.display = "flex";
+        chatIcon.style.display = "none";
+      }
+
+      function closeChat() {
+        chatContainer.style.display = "none";
+        chatIcon.style.display = "flex";
+        chatIcon.classList.add("closed"); // Change to ChatGPT Icon
+        chatIcon.innerHTML = '<i class="fas fa-robot"></i>';
+      }
+
+      // Display messages in the chatbox
+      function appendMessage(sender, message) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("chat-message", sender);
+        messageDiv.innerHTML = <p>${message}</p>;
+        chatBody.appendChild(messageDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      // Handle Enter Key
+      function handleEnter(event) {
+        if (event.key === "Enter") sendMessage();
+      }
+
+      // Send Message
+      async function sendMessage() {
+        const userInput = document.getElementById("userInput");
+        const userMessage = userInput.value.trim();
+
+        if (userMessage === "") return;
+
+        // Append user message
+        appendMessage("user", userMessage);
+        userInput.value = "";
+
+        // Placeholder for API Response
+        appendMessage("bot", "Thinking...");
+
+        // Fetch the actual GPT response
+        const botResponse = await getChatGPTResponse(userMessage);
+
+        // Replace "Thinking..." with the actual response
+        document.querySelector(".chat-message.bot:last-child p").innerText =
+          botResponse;
+      }
+
+      // GPT API Integration
+      async function getChatGPTResponse(userMessage) {
+        try {
+          const response = await fetch("/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userMessage }),
+          });
+
+          const data = await response.json();
+          return data.reply;
+        } catch (error) {
+          console.error("Error fetching response:", error);
+          return "Sorry, something went wrong. Please try again!";
+        }
+      }
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
