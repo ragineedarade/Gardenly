@@ -7,7 +7,7 @@ import google.generativeai as genai
 # Hardcoding your API key is NOT secure for production applications.
 # It exposes your key to anyone who can access your code.
 # Always use environment variables or a secure configuration management system in production.
-API_KEY = "AIzaSyDSr_72ZtflK4VM1UJ129I38JJRNgCq-uE" # <--- YOUR GOOGLE GEMINI API KEY HERE
+API_KEY = " " # <--- YOUR GOOGLE GEMINI API KEY HERE
 # --- END OF WARNING ---
 
 if not API_KEY:
